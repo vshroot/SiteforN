@@ -99,32 +99,37 @@ audio::-webkit-media-controls-panel {
 .logout-button:hover {
   background-color: #ccc;
 }
-/* Анимированный фон */
+/* Анимированный фон — мягкие пульсирующие круги */
 body::before {
   content: "";
   position: fixed;
-  top: -50%;
-  left: -50%;
+  top: 0;
+  left: 0;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.02) 0%, transparent 70%),
-              radial-gradient(circle at 70% 70%, rgba(255,255,255,0.015) 0%, transparent 70%);
-  animation: animateBg 10s linear infinite alternate;
+  background: radial-gradient(circle at 25% 40%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
+              radial-gradient(circle at 75% 60%, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
+  animation: backgroundMove 20s ease-in-out infinite;
   z-index: 0;
+  pointer-events: none;
 }
 
-@keyframes animateBg {
+@keyframes backgroundMove {
   0% {
-    transform: scale(1) rotate(0deg);
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.05) translate(-2%, -2%);
   }
   100% {
-    transform: scale(1.05) rotate(360deg);
+    transform: scale(1) translate(0, 0);
   }
 }
 
-/* Обеспечиваем поверхностность основного контента */
+/* Поверхность интерфейса над фоном */
 .login-container,
 .player-container {
   position: relative;
   z-index: 1;
+  background-color: #111; /* остаётся, усиливает контраст */
 }
