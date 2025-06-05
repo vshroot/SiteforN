@@ -10,37 +10,85 @@
   <div class="player-container">
     <h1>Аудиотреки</h1>
 
-    <div class="track">
-      <img src="covers/gruaz.jpg" alt="Обложка трека 1" class="cover" />
-      <audio controls src="audio/Грязь ау.mp3"></audio>
-      <a href="https://open.spotify.com/track/3B2QvW4V9KyAq19iYPWUHI?si=5bf4ce4d1a6848d4" target="_blank" class="spotify-link">Слушать в Spotify</a>
+    <div class="track" data-track="1">
+      <div class="cover-wrapper">
+        <img src="covers/gruaz.jpg" alt="Обложка трека 1" class="cover" />
+      </div>
+      <div class="controls">
+        <audio controls src="audio/Грязь ау.mp3"></audio>
+        <a href="https://open.spotify.com/track/3B2QvW4V9KyAq19iYPWUHI?si=5bf4ce4d1a6848d4" target="_blank" class="spotify-link">Слушать в Spotify</a>
+      </div>
     </div>
 
-    <div class="track">
-      <img src="covers/inspace.jpg" alt="Обложка трека 2" class="cover" />
-      <audio controls src="audio/INSPACE клининг.mp3"></audio>
-      <a href="https://open.spotify.com/track/1faDrHXD5OTu8oxAyY2UqX?si=1f093c7b41f14ed1" target="_blank" class="spotify-link">Слушать в Spotify</a>
+    <div class="track" data-track="2">
+      <div class="cover-wrapper">
+        <img src="covers/inspace.jpg" alt="Обложка трека 2" class="cover" />
+      </div>
+      <div class="controls">
+        <audio controls src="audio/INSPACE клининг.mp3"></audio>
+        <a href="https://open.spotify.com/track/1faDrHXD5OTu8oxAyY2UqX?si=1f093c7b41f14ed1" target="_blank" class="spotify-link">Слушать в Spotify</a>
+      </div>
     </div>
 
-    <div class="track">
-      <img src="covers/inspace.jpg" alt="Обложка трека 3" class="cover" />
-      <audio controls src="audio/INSPACE орбит.mp3"></audio>
-      <a href="https://open.spotify.com/track/6rJeTz479WICwjM4ygsQqX?si=3ffb5edf6ec547de" target="_blank" class="spotify-link">Слушать в Spotify</a>
+    <div class="track" data-track="3">
+      <div class="cover-wrapper">
+        <img src="covers/inspace.jpg" alt="Обложка трека 3" class="cover" />
+      </div>
+      <div class="controls">
+        <audio controls src="audio/INSPACE орбит.mp3"></audio>
+        <a href="https://open.spotify.com/track/6rJeTz479WICwjM4ygsQqX?si=3ffb5edf6ec547de" target="_blank" class="spotify-link">Слушать в Spotify</a>
+      </div>
     </div>
 
-    <div class="track">
-      <img src="covers/inspace.jpg" alt="Обложка трека 4" class="cover" />
-      <audio controls src="audio/INSPACE твое привет.mp3"></audio>
-      <a href="https://open.spotify.com/track/5Rjg7eU0GX5MJsVeCrJQ31?si=60328ecd46e7419c" target="_blank" class="spotify-link">Слушать в Spotify</a>
+    <div class="track" data-track="4">
+      <div class="cover-wrapper">
+        <img src="covers/inspace.jpg" alt="Обложка трека 4" class="cover" />
+      </div>
+      <div class="controls">
+        <audio controls src="audio/INSPACE твое привет.mp3"></audio>
+        <a href="https://open.spotify.com/track/5Rjg7eU0GX5MJsVeCrJQ31?si=60328ecd46e7419c" target="_blank" class="spotify-link">Слушать в Spotify</a>
+      </div>
     </div>
 
-    <div class="track">
-      <img src="covers/inspace.jpg" alt="Обложка трека 5" class="cover" />
-      <audio controls src="audio/INSPACE взрослые не едят сладкое.mp3"></audio>
-      <a href="https://open.spotify.com/track/1N4OXyIIOQxd6Jbjg3wLHE?si=e680759d86fb43f6" target="_blank" class="spotify-link">Слушать в Spotify</a>
+    <div class="track" data-track="5">
+      <div class="cover-wrapper">
+        <img src="covers/inspace.jpg" alt="Обложка трека 5" class="cover" />
+      </div>
+      <div class="controls">
+        <audio controls src="audio/INSPACE взрослые не едят сладкое.mp3"></audio>
+        <a href="https://open.spotify.com/track/1N4OXyIIOQxd6Jbjg3wLHE?si=e680759d86fb43f6" target="_blank" class="spotify-link">Слушать в Spotify</a>
+      </div>
     </div>
 
     <a href="index.html" class="logout-button">Выйти</a>
   </div>
+
+  <script>
+    // Скрывать все обложки, показывать только у активного трека
+    const audios = document.querySelectorAll("audio");
+    const covers = document.querySelectorAll(".cover");
+
+    audios.forEach((audio, index) => {
+      audio.addEventListener("play", () => {
+        // Остановить все другие треки
+        audios.forEach((a, i) => {
+          if (i !== index) a.pause();
+        });
+
+        // Показать только соответствующую обложку
+        covers.forEach((cover, i) => {
+          cover.style.opacity = i === index ? "1" : "0";
+        });
+      });
+
+      audio.addEventListener("pause", () => {
+        covers[index].style.opacity = "0";
+      });
+
+      audio.addEventListener("ended", () => {
+        covers[index].style.opacity = "0";
+      });
+    });
+  </script>
 </body>
 </html>
