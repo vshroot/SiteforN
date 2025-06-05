@@ -156,3 +156,50 @@ audio::-webkit-media-controls-panel {
 .spotify-link:hover {
   text-decoration: underline;
 }
+
+.track {
+  margin-bottom: 3rem;
+  position: relative;
+  text-align: center;
+}
+
+.cover-wrapper {
+  position: absolute;
+  top: -140px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.cover {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.spotify-button {
+  padding: 0.6rem 1rem;
+  background-color: #1db954;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.spotify-button:hover {
+  background-color: #17a74a;
+}
